@@ -28,7 +28,7 @@ const FormInput = ({
               id={id}
               placeholder={placeholder}
               type={type}
-              disabled={form?.formState?.isLoading}
+              defaultValue={field.value}
               maxLength={maxLength}
               {...field}
             />
