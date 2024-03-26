@@ -1,24 +1,31 @@
 import * as zod from "zod";
 
 export const cardFormValidation = zod.object({
-  name: zod.string().min(3, "Name must be at least 3 characters"),
-  cardNumber: zod
-    .string()
-    .min(16, "Card number must be 16 digits")
-    .max(16, "Card number must be 16 digits"),
-  expiryYear: zod.string().min(4, "Year must be 4 digits"),
-  expiryMonth: zod.string().min(2, "Month must be 2 digits"),
+  name: zod
+    .string({ required_error: "Card name is required" })
+    .min(3, "Name must be at least 3 characters"),
+  cardNumber: zod.string().optional(),
+  year: zod
+    .string({ required_error: "Expiry year is required" })
+    .min(4, "Year must be 4 digits"),
+  month: zod
+    .string({ required_error: "Expiry month is required" })
+    .min(2, "Month must be 2 digits"),
   cvv: zod
-    .string()
+    .string({ required_error: "Please enter a valid cvv." })
     .min(3, "CVV must be 3 digits")
     .max(3, "CVV must be 3 digits"),
 });
 
 export const bankFormValidation = zod.object({
-  name: zod.string().min(3, "Name must be at least 3 characters"),
-  bank: zod.string().min(3, "Bank must be at least 3 characters"),
+  name: zod
+    .string({ required_error: "Customer name is required" })
+    .min(3, "Name must be at least 3 characters"),
+  bank: zod
+    .string({ required_error: "Bank is required" })
+    .min(3, "Bank must be at least 3 characters"),
   transferMethod: zod
-    .string()
+    .string({ required_error: "Transfer method is required" })
     .min(3, "Transfer method must be at least 3 characters"),
   email: zod
     .string({

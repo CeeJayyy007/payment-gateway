@@ -6,6 +6,13 @@ import { handleCardNumberChange } from "../utils/helper";
 import FormInput from "./form-input";
 import FormSelect from "./form-select";
 import { months } from "@/pages/utils/mock-data";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 
 const CardForm = ({ form }) => {
   const [cardNumber, setCardNumber] = useState("");
@@ -18,13 +25,15 @@ const CardForm = ({ form }) => {
       case "mastercard":
         return <Icons.mastercard className="h-6 w-6" />;
       case "amex":
-        return <Icons.amex className="h-6 w-6" />;
+        return <Icons.logo className="h-6 w-6" />;
       case "discover":
         return <Icons.discover className="h-6 w-6" />;
       default:
         return null;
     }
   };
+
+  console.log("cardType", cardNumber);
 
   return (
     <div className="grid gap-4">
@@ -37,30 +46,44 @@ const CardForm = ({ form }) => {
       />
 
       <div className="grid gap-2">
-        <Label htmlFor="number">Card number</Label>
-        <div className="relative">
-          <Input
-            id="number"
-            type="text"
-            placeholder="1234-5678-9012-3456"
-            value={cardNumber}
-            onChange={(e) =>
-              handleCardNumberChange(e, setCardType, setCardNumber)
-            }
-            maxLength={19}
-            minLength={12}
-            pattern="\d{4}-\d{4}-\d{4}-\d{4}"
-            title="Please enter a valid card number (16 digits separated by dashes)"
-            required
-          />
-          <div className="absolute right-3 top-5  transform -translate-y-1/2">
-            {getCardIcon(cardType)}
-          </div>
-        </div>
+        <FormField
+          control={form.control}
+          name="cardNumber"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Card Number</FormLabel>
+              <FormControl>
+                <div className="relative">
+                  <Input
+                    id="cardNumber"
+                    name="cardNumber"
+                    type="text"
+                    placeholder="1234-5678-9012-3456"
+                    value={cardNumber}
+                    onChange={(e) =>
+                      handleCardNumberChange(e, setCardType, setCardNumber)
+                    }
+                    maxLength={19}
+                    minLength={12}
+                    pattern="\d{4}-\d{4}-\d{4}-\d{4}"
+                    title="Please enter a valid card number (16 digits separated by dashes)"
+                    // required
+                    // {...field}
+                  />
+                  <div className="absolute right-3 top-5  transform -translate-y-1/2">
+                    {getCardIcon(cardType)}
+                  </div>
+                </div>
+              </FormControl>
+              {form?.formState?.errors?.cardNumber && <FormMessage />}
+            </FormItem>
+          )}
+        />
       </div>
       <div className="grid grid-cols-3 gap-4">
         <FormSelect
           form={form}
+          id="month"
           name="month"
           placeholder="Month"
           label="Month"
