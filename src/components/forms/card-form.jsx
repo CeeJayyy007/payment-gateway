@@ -33,8 +33,6 @@ const CardForm = ({ form }) => {
     }
   };
 
-  console.log("cardType", cardNumber);
-
   return (
     <div className="grid gap-4">
       <FormInput

@@ -120,7 +120,6 @@ const PaymentForm = () => {
   }, [count]);
 
   const onSubmit = (data) => {
-    console.log("data", data);
     try {
       setIsLoading(true);
 
@@ -143,15 +142,13 @@ const PaymentForm = () => {
     }
   };
 
-  console.log("form", isLoading, form.formState.errors);
-
   return (
     // card component
     <Card className="w-[400px] ">
       <CardHeader>
         <CardTitle>Payment Method</CardTitle>
         <CardDescription>
-          Add a new payment method to your account.
+          Select a payment method to complete your transaction.
         </CardDescription>
       </CardHeader>
       <Form {...form}>
@@ -188,76 +185,58 @@ const PaymentForm = () => {
 
             {/* Dynamic Payment Form */}
             {selected === "Apple" && (
-              <div className="grid gap-4">
-                <FormInput
-                  id="applePay"
-                  name="applePay"
-                  placeholder="Enter Apple Pay information"
-                  label="Apple Pay"
-                  type="email"
-                  form={form}
-                />
-              </div>
+              <FormInput
+                id="applePay"
+                name="applePay"
+                placeholder="Enter Apple Pay information"
+                label="Apple Pay"
+                type="email"
+                form={form}
+              />
             )}
 
             {selected === "Paypal" && (
-              <div className="grid gap-4">
-                <div className="grid gap-2">
-                  <FormInput
-                    id="payPal"
-                    name="payPal"
-                    placeholder="Enter PayPal information"
-                    label="PayPal"
-                    type="email"
-                    form={form}
-                  />
-                </div>
-              </div>
+              <FormInput
+                id="payPal"
+                name="payPal"
+                placeholder="Enter PayPal information"
+                label="PayPal"
+                type="email"
+                form={form}
+              />
             )}
 
             {selected === "Google" && (
-              <div className="grid gap-4">
-                <div className="grid gap-2">
-                  <FormInput
-                    id="googlePay"
-                    name="googlePay"
-                    placeholder="Enter Google Pay information"
-                    label="Google Pay"
-                    type="email"
-                    form={form}
-                  />
-                </div>
-              </div>
+              <FormInput
+                id="googlePay"
+                name="googlePay"
+                placeholder="Enter Google Pay information"
+                label="Google Pay"
+                type="email"
+                form={form}
+              />
             )}
 
             {selected === "Amazon" && (
-              <div className="grid gap-4">
-                <div className="grid gap-2">
-                  <FormInput
-                    id="amazon"
-                    name="amazon"
-                    placeholder="Enter Amazon information"
-                    label="Amazon"
-                    type="email"
-                    form={form}
-                  />
-                </div>
-              </div>
+              <FormInput
+                id="amazon"
+                name="amazon"
+                placeholder="Enter Amazon information"
+                label="Amazon"
+                type="email"
+                form={form}
+              />
             )}
 
             {selected === "Stripe" && (
-              <div className="grid gap-4">
-                <div className="grid gap-2">
-                  <FormInput
-                    id="stripe"
-                    name="stripe"
-                    placeholder="Enter Stripe information"
-                    label="Stripe"
-                    type="email"
-                    form={form}
-                  />
-                </div>
-              </div>
+              <FormInput
+                id="stripe"
+                name="stripe"
+                placeholder="Enter Stripe information"
+                label="Stripe"
+                type="email"
+                form={form}
+              />
             )}
           </CardContent>
           <CardFooter>
