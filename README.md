@@ -171,7 +171,9 @@ The plugin system consists of the following components:
 
 - Plugin configuration: Allows developers to configure the payment method plugins, specifying options such as API keys, endpoints, and other settings.
 
-The plugin system is designed to be modular, allowing developers to add, remove, or update payment method plugins independently of the core application code. This approach promotes code reusability, maintainability, and extensibility, enabling the application to support a wide range of payment methods with minimal effort.
+The plugin will integrate with the application by registering itself with the plugin loader during the initialization phase. The plugin loader will then invoke the plugin's methods as needed, such as processing payments or handling errors.
+
+The plugin system will be designed to be modular, allowing developers to add, remove, or update payment method plugins independently of the core application code. This approach promotes code reusability, maintainability, and extensibility, enabling the application to support a wide range of payment methods with minimal effort.
 
 **Quick Note:** My knowledge of plugin systems is limited, so I have provided a high-level overview of the concept based on my understanding of the topic. I would be happy to provide more detailed information or clarify any points if needed.
 
