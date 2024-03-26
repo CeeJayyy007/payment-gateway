@@ -31,6 +31,9 @@ The application is built using React, React Hook Form, Vite, Tailwind CSS, and S
       - [Maintainability](#maintainability)
       - [Performance](#performance)
       - [Flexibility](#flexibility)
+      - [Aesthetics](#aesthetics)
+    - [Conclusion](#conclusion)
+- [Plugin System Concept](#plugin-system-concept)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
