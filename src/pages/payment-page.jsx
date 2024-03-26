@@ -15,12 +15,14 @@ import {
 } from "@/components/ui/card";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import FormInput from "@/components/forms/form-input";
 import { Form } from "@/components/ui/form";
 import { formValidationSchemas } from "@/components/forms/form-validation-schemas";
+import { useToast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
 
 // mock payment method data
 const paymentMethodArray = [
@@ -68,11 +70,13 @@ const PaymentForm = () => {
     paymentMethodArray.slice(0, 3)
   );
   const [count, setCount] = useState(0);
+  const { toast } = useToast();
   const otherPaymentMethods = paymentMethodArray.slice(2);
 
   const [toggleIconsArray, setToggleIconsArray] = useState([
     otherPaymentMethods,
   ]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm({
     resolver: zodResolver(formValidationSchemas[selected]),
@@ -118,7 +122,18 @@ const PaymentForm = () => {
   const onSubmit = (data) => {
     console.log("data", data);
     try {
-      navigate("/success", { state: { data } });
+      setIsLoading(true);
+
+      toast({
+        title: "Success! 🎉",
+        description: "Transaction successful. Redirecting to success page.",
+      });
+
+      // simulate 3 seconds delay
+      setTimeout(() => {
+        navigate("/success", { state: { data } });
+      }, 3000);
+
       form.reset();
     } catch (err) {
       form.setError("submitError", {
@@ -127,6 +142,8 @@ const PaymentForm = () => {
       });
     }
   };
+
+  console.log("form", isLoading, form.formState.errors);
 
   return (
     // card component
@@ -246,10 +263,11 @@ const PaymentForm = () => {
           <CardFooter>
             <Button
               type="submit"
-              className="w-full mt-4
-            mb-4"
+              className="w-full mt-4 mb-4"
+              disabled={isLoading}
             >
               Continue
+              {isLoading && <Icons.spinner className={cn("animate-spin")} />}
             </Button>
           </CardFooter>
         </form>
