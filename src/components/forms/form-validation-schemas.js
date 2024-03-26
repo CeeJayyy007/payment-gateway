@@ -20,46 +20,58 @@ export const bankFormValidation = zod.object({
   transferMethod: zod
     .string()
     .min(3, "Transfer method must be at least 3 characters"),
-  email: zod.string().email({
-    required_error: "Invalid email address",
-    invalid_type_error: "Invalid email address",
-  }),
+  email: zod
+    .string({
+      required_error: "Please enter an email address.",
+      invalid_type_error: "Invalid email address",
+    })
+    .email(),
   phone: zod.string().min(10, "Phone number must be at least 10 digits"),
 });
 
 export const paypalFormValidation = zod.object({
-  payPal: zod.string().email({
-    required_error: "Invalid email is required",
-    invalid_type_error: "Invalid email address",
-  }),
+  payPal: zod
+    .string({
+      required_error: "Please enter an email address.",
+      invalid_type_error: "Invalid email address",
+    })
+    .email(),
 });
 
 export const appleFormValidation = zod.object({
-  applePay: zod.string().email({
-    required_error: "Invalid email is required",
-    invalid_type_error: "Invalid email address",
-  }),
+  applePay: zod
+    .string({
+      required_error: "Please enter an email address.",
+      invalid_type_error: "Invalid email address",
+    })
+    .email(),
 });
 
 export const googleFormValidation = zod.object({
-  googlePay: zod.string().email({
-    required_error: "Invalid email is required",
-    invalid_string_error: "Invalid email address",
-  }),
+  googlePay: zod
+    .string({
+      required_error: "Please enter an email address.",
+      invalid_type_error: "Invalid email address",
+    })
+    .email(),
 });
 
 export const amazonFormValidation = zod.object({
-  amazon: zod.string().email({
-    required_error: "Invalid email is required",
-    invalid_type_error: "Invalid email address",
-  }),
+  amazon: zod
+    .string({
+      required_error: "Please enter an email address.",
+      invalid_type_error: "Invalid email address",
+    })
+    .email(),
 });
 
 export const stripeFormValidation = zod.object({
-  stripe: zod.string().email({
-    required_error: "Invalid email is required",
-    invalid_type_error: "Invalid email address",
-  }),
+  stripe: zod
+    .string({
+      required_error: "Please enter an email address.",
+      invalid_type_error: "Invalid email address",
+    })
+    .email(),
 });
 
 export const formValidationSchemas = {

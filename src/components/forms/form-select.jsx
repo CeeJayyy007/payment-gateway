@@ -13,15 +13,7 @@ import {
   SelectItem,
 } from "../ui/select";
 
-const FormSelect = ({
-  form,
-  name,
-  label,
-  options,
-  props,
-  placeholder,
-  onValueChange,
-}) => {
+const FormSelect = ({ form, name, label, options, props, placeholder }) => {
   return (
     <FormField
       control={form.control}
@@ -29,11 +21,7 @@ const FormSelect = ({
       render={({ field }) => (
         <FormItem>
           <FormLabel>{label}</FormLabel>
-          <Select
-            onValueChange={field.onChange}
-            value={field.value ? field.value : ""}
-            {...props}
-          >
+          <Select onValueChange={field.onChange} value={field.value} {...props}>
             <FormControl>
               <SelectTrigger
                 className={field.value ? "" : "text-muted-foreground"}
@@ -49,7 +37,7 @@ const FormSelect = ({
               ))}
             </SelectContent>
           </Select>
-          {form?.formState?.errors && <FormMessage />}
+          {form?.formState?.errors?.name && <FormMessage />}
         </FormItem>
       )}
     />
