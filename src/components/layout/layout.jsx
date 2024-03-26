@@ -1,4 +1,5 @@
 import { Outlet } from "react-router";
+import { Toaster } from "@/components/ui/toaster";
 
 const Layout = () => {
   return (
@@ -6,6 +7,7 @@ const Layout = () => {
       <div className="flex flex-row h-screen">
         <div className="bg-gray-100 rounded-lg w-screen  flex items-center justify-center">
           <Outlet />
+          <Toaster />
         </div>
       </div>
     </div>
